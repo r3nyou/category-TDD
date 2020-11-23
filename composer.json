@@ -1,0 +1,9 @@
+{
+    "require": {
+        "slim/slim": "3.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit-selenium": "^8.0",
+        "phpunit/phpunit": "^8.5"
+    }
+}

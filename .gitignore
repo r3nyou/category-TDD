@@ -1,0 +1,5 @@
+.idea/
+vendor/
+.phpunit.result.cache
+chromedriver
+selenium-server-standalone-3.141.59.jar
