@@ -3,14 +3,19 @@
     <div class="grid-x grid-margin-x">
         <div class="medium-6 cell">
             <h3>
-                Edit/Add a new category
+                Add a new category
             </h3>
-            <div class="callout success">
-                Category was saved
-            </div>
+<!--            <div class="callout success">-->
+<!--                Category was saved-->
+<!--            </div>-->
+<!--            <div class="callout alert">-->
+<!--                Fill correctly the form-->
+<!--            </div>-->
+            <?php if($category_delete ?? false): ?>
             <div class="callout alert">
-                Fill correctly the form
+                Category was deleted
             </div>
+            <?php endif; ?>
             <label
             >Name
                 <input type="text" placeholder="Name" />
@@ -70,7 +75,8 @@
                             <a href="#">Edit</a>
                         </li>
                         <li>
-                            <a href="#">Delete</a>
+                            <a id="delete-category-confirmation" onclick="return confirm('Are your sure?')"
+                               href="delete-category">Delete</a>
                         </li>
                     </ul>
                 </div>
