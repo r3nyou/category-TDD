@@ -17,7 +17,7 @@ class FrontendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
 
     public function testCanSeeConfirmDialogBoxWhenTryingToDeleteCategory()
     {
-        $this->url('');
+        $this->url('show-category/1');
         $this->clickOnElement('delete-category-confirmation');
         $this->waitUntil(function () {
             if ($this->alertIsPresent()) {
@@ -31,7 +31,7 @@ class FrontendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
 
     public function testCanSeeCorrectMessageAfterDeletingCategory()
     {
-        $this->url('');
+        $this->url('show-category/1');
         $this->clickOnElement('delete-category-confirmation');
         $this->waitUntil(function () {
             if ($this->alertIsPresent()) {
@@ -42,5 +42,21 @@ class FrontendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
         $this->acceptAlert();
         $this->assertContains('Category was deleted', $this->source());
         $this->markTestIncomplete('Message about deleted category should appear after redirection');
+    }
+
+    public function testCanSeeEditAndDeleteLinksAndCategoryName()
+    {
+        $this->url('show-category/1');
+        $electornics = $this->byLinkText('Electronics');
+        $electornics->click();
+
+        $h5 = $this->byCssSelector('div.basic-card-content h5');
+        $this->assertContains('Electronics', $h5->text());
+
+        $editLink = $this->byLinkText('Edit');
+        $href = $editLink->attribute('href');
+        $this->assertContains('edit-category/1', $href);
+
+        $this->markTestIncomplete('Category name, description, edit, delete link must be dynamic');
     }
 }
