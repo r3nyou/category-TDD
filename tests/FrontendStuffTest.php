@@ -59,4 +59,14 @@ class FrontendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
 
         $this->markTestIncomplete('Category name, description, edit, delete link must be dynamic');
     }
+
+    public function testCanSeeEditCategoryMessage()
+    {
+        $this->url('show-category/1');
+        $editLink = $this->byLinkText('Edit');
+        $editLink->click();
+        $this->assertContains('Edit category', $this->source());
+
+        $this->markTestIncomplete('Make input values dynamic');
+    }
 }

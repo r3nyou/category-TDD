@@ -23,4 +23,14 @@ class CategoryController extends BaseController
         ]);
         return $response;
     }
+
+    public function editCategory($request, $response, $args)
+    {
+        $category_id = $args['id'];
+        $category = ['name' => 'Electronics', 'parent' => null];
+        $response = $this->container->view->render($response, 'view.phtml', [
+            'editCategory' => $category,
+        ]);
+        return $response;
+    }
 }

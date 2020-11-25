@@ -3,7 +3,11 @@
     <div class="grid-x grid-margin-x">
         <div class="medium-6 cell">
             <h3>
+                <?php if ($editCategory ?? false): ?>
+                Edit category
+                <?php else: ?>
                 Add a new category
+                <?php endif;?>
             </h3>
 <!--            <div class="callout success">-->
 <!--                Category was saved-->
@@ -18,7 +22,7 @@
             <?php endif; ?>
             <label
             >Name
-                <input type="text" placeholder="Name" />
+                <input type="text" placeholder="Name" value="<?=$editCategory['name'] ?? null?>"/>
             </label>
             <label
             >Description
