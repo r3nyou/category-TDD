@@ -88,4 +88,28 @@ class FrontendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
 
         $this->markTestIncomplete('More job with html form needed');
     }
+
+    public function testCanSeeNestedCategories()
+    {
+        $this->url('');
+        $categories = $this->elements(
+            $this->using('css selector')->value('ul.dropdown li')
+        );
+//        $this->assertEquals(18, count($categories));
+        $this->assertEquals(17, count($categories));
+
+        $elem1 = $this->byCssSelector('ul.dropdown > li:nth-child(2) > a');
+        $this->assertEquals('Electronics', $elem1->text());
+
+        $elem2 = $this->byCssSelector('ul.dropdown > li:nth-child(3) > a');
+        $this->assertEquals('Videos', $elem2->text());
+
+        $elem3 = $this->byCssSelector('ul.dropdown > li:nth-child(4) > a');
+        $this->assertEquals('Software', $elem3->text());
+
+        $elem4 = $this->byCssSelector('ul.dropdown > :nth-child(2) > :nth-child(2) > :nth-child(1) > a');
+//        $elem4 = $this->byXPath('//ul[@class="dropdown menu"]/li[2]/ul[1]/li[1]/a');
+        $href = $elem4->attribute('href');
+        $this->assertRegExp('@^http://localhost:8000/show-category/[0-9]+,Monitors$@', $href);
+    }
 }
