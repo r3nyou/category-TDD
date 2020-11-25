@@ -9,28 +9,32 @@
                 Add a new category
                 <?php endif;?>
             </h3>
-<!--            <div class="callout success">-->
-<!--                Category was saved-->
-<!--            </div>-->
-<!--            <div class="callout alert">-->
-<!--                Fill correctly the form-->
-<!--            </div>-->
+            <?php if (isset($categorySaved) && $categorySaved == false): ?>
+            <div class="callout alert">
+                Fill correctly the form
+            </div>
+            <?php elseif (isset($categorySaved) && $categorySaved == true): ?>
+            <div class="callout success">
+                Category was saved
+            </div>
+            <?php endif; ?>
             <?php if($category_delete ?? false): ?>
             <div class="callout alert">
                 Category was deleted
             </div>
             <?php endif; ?>
+            <form action="<?=$baseUrl?>/save-category/1" method="POST">
             <label
             >Name
-                <input type="text" placeholder="Name" value="<?=$editCategory['name'] ?? null?>"/>
+                <input type="text" name="category_name" placeholder="Name" value="<?=$editCategory['name'] ?? null?>"/>
             </label>
             <label
             >Description
-                <textarea placeholder="Description"></textarea>
+                <textarea name="category_description" placeholder="Description"></textarea>
             </label>
             <label
             >Parent category
-                <select>
+                <select name="category_parent">
                     <option>--choose--</option>
                     <option value="">Electronics</option>
                     <option value="">&nbsp;&nbsp;Monitors</option>
@@ -60,6 +64,7 @@
                     class="button expanded"
                     value="Save category"
             />
+            </form>
         </div>
 
         <div class="medium-6 large-5 cell large-offset-1">

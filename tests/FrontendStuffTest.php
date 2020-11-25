@@ -69,4 +69,23 @@ class FrontendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
 
         $this->markTestIncomplete('Make input values dynamic');
     }
+
+    public function testCanSeeFromValidation()
+    {
+        $this->url('');
+        $button = $this->byCssSelector('input[type="submit"]');
+        $button->submit();
+        $this->assertContains('Fill correctly the form', $this->source());
+
+        $this->back();
+        $categoryName = $this->byName('category_name');
+        $categoryName->value('Name');
+        $categoryName = $this->byName('category_description');
+        $categoryName->value('Description');
+        $button = $this->byCssSelector('input[type="submit"]');
+        $button->submit();
+        $this->assertContains('Category was saved', $this->source());
+
+        $this->markTestIncomplete('More job with html form needed');
+    }
 }
