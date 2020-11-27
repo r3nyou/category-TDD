@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Services\HtmlList;
+use App\Services\SelectList;
 use App\Services\CategoryTree;
 use PHPUnit\Framework\TestCase;
 
@@ -19,6 +21,24 @@ class CategoryTreeTest extends TestCase
     public function testCanConvertDatabaseResultToNestedCategoryArray($dbResult, $afterResult)
     {
         $this->assertEquals($afterResult, $this->tree->convert($dbResult));
+    }
+
+    /**
+     * @dataProvider arrayProvider
+     */
+    public function testCanProduceHtmlNestedCategories(
+        array $dbArray,
+        array $afterResult,
+        string $htmlList,
+        array $htmlSelectList
+    ) {
+        $html = new HtmlList();
+        $afterConversionDb = $html->convert($dbArray);
+        $this->assertEquals($htmlList, $html->makeUlList($afterConversionDb));
+
+        $selectList = new SelectList();
+        $this->assertEquals($htmlSelectList, $selectList->makeSelectList($afterConversionDb));
+            // 8390 9945
     }
 
     public function arrayProvider()
@@ -49,6 +69,12 @@ class CategoryTreeTest extends TestCase
                         'parent_id' => null,
                         'children' => []
                     ],
+                ],
+                '<ul><li>Electronics</li><li>Videos</li><li>Software</li></ul>',
+                [
+                    ['name' => 'Electronics'],
+                    ['name' => 'Videos'],
+                    ['name' => 'Software'],
                 ]
             ],
             'twoLevel' => [
@@ -70,6 +96,11 @@ class CategoryTreeTest extends TestCase
                             ]
                         ]
                     ],
+                ],
+                '<ul><li>Electronics<ul><li>Computers</li></ul></li></ul>',
+                [
+                    ['name' => 'Electronics'],
+                    ['name' => '&nbsp;&nbsp;Computers'],
                 ]
             ],
             'threeLevel' => [
@@ -99,6 +130,12 @@ class CategoryTreeTest extends TestCase
                             ]
                         ]
                     ],
+                ],
+                '<ul><li>Electronics<ul><li>Computers<ul><li>Laptops</li></ul></li></ul></li></ul>',
+                [
+                    ['name' => 'Electronics'],
+                    ['name' => '&nbsp;&nbsp;Computers'],
+                    ['name' => '&nbsp;&nbsp;&nbsp;&nbsp;Laptops'],
                 ]
             ],
         ];
