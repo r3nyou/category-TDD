@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Manager;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -20,14 +21,15 @@ class BackendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
         ]);
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
+        $capsule::schema()->dropIfExists('categories');
         $capsule::schema()->create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable(false);
             $table->bigInteger('parent_id')->unsigned()->nullable();
         });
-        $capsule::table('categories')->insert(
-            ['name' => 'Electronics']
-        );
+        Category::create([
+            'name' => 'Electronics-test'
+        ]);
     }
 
     public function setUp()
@@ -40,6 +42,6 @@ class BackendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
     public function testCanSeeCorrectStringOnMainPage()
     {
         $this->url('');
-        $this->assertContains('Electronics', $this->source());
+        $this->assertContains('Electronics-test', $this->source());
     }
 }

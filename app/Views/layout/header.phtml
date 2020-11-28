@@ -16,6 +16,9 @@
 <!-- Start Top Bar -->
 <div class="top-bar">
     <div class="top-bar-left">
+        <?php foreach ($categories as $category): ?>
+        <?=$category['name']?>
+        <?php endforeach; ?>
         <ul class="dropdown menu" data-dropdown-menu>
             <a class="menu-text" href="<?=$baseUrl?>"> Multi level categories</a></li>
             <li class="has-submenu">
