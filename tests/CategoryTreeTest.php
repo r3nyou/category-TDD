@@ -38,7 +38,6 @@ class CategoryTreeTest extends TestCase
 
         $selectList = new SelectList();
         $this->assertEquals($htmlSelectList, $selectList->makeSelectList($afterConversionDb));
-            // 8390 9945
     }
 
     public function arrayProvider()
