@@ -47,8 +47,8 @@ class FrontendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
     public function testCanSeeEditAndDeleteLinksAndCategoryName()
     {
         $this->url('show-category/1');
-        $electornics = $this->byLinkText('Electronics');
-        $electornics->click();
+        $electronics = $this->byLinkText('Electronics');
+        $electronics->click();
 
         $h5 = $this->byCssSelector('div.basic-card-content h5');
         $this->assertContains('Electronics', $h5->text());

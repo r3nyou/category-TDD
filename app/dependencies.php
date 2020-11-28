@@ -7,8 +7,3 @@ $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer('../app/Views/', [
     'baseUrl' => 'http://localhost:8000',
 ]);
-
-$capsule = new \Illuminate\Database\Capsule\Manager();
-$capsule->addConnection($container['settings']['db']);
-$capsule->setAsGlobal();
-$capsule->bootEloquent();

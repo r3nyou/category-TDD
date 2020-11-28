@@ -8,10 +8,7 @@ class HomeController extends BaseController
 {
     public function home($request, $response, $args)
     {
-        $categories = Category::all();
-        $response = $this->container->view->render($response, 'view.phtml', [
-            'categories' => $categories,
-        ]);
+        $response = $this->container->view->render($response, 'view.phtml');
         return $response;
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Category;
-use Illuminate\Support\Manager;
 use Illuminate\Database\Schema\Blueprint;
 
 class BackendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
@@ -39,9 +38,17 @@ class BackendStuffTest extends PHPUnit_Extensions_Selenium2TestCase
         $this->setDesiredCapabilities(['chromeOption' => ['w3c' => false]]);
     }
 
-    public function testCanSeeCorrectStringOnMainPage()
-    {
-        $this->url('');
-        $this->assertContains('Electronics-test', $this->source());
-    }
+//    public function testCanSeeAddedCategories()
+//    {
+//        $this->url('');
+//
+//        $element = $this->byXPath('//ul[@class="dropdown menu"]/li[2]/a');
+//        $href = $element->attribute('href');
+//        $this->assertRegExp('@^http://localhost:8000/show-category/[0-9]+,Electronics@',$href);
+//
+//        $this->url('show-category/1');
+//        $element = $this->byXPath('//ul[@class="dropdown menu"]/li[2]/a');
+//        $href = $element->attribute('href');
+//        $this->assertRegExp('@^http://localhost:8000/show-category/[0-9]+,Electronics@',$href);
+//    }
 }

@@ -16,52 +16,52 @@
 <!-- Start Top Bar -->
 <div class="top-bar">
     <div class="top-bar-left">
-        <?php foreach ($categories as $category): ?>
-        <?=$category['name']?>
-        <?php endforeach; ?>
         <ul class="dropdown menu" data-dropdown-menu>
-            <a class="menu-text" href="<?=$baseUrl?>"> Multi level categories</a></li>
-            <li class="has-submenu">
-                <a href="<?=$baseUrl?>/show-category/1">Electronics</a>
+            <li><a href="<?=$baseUrl?>">Multi level categories</a></li>
+            <?php foreach($categories as $category): ?>
+                <li><a href="<?=$baseUrl?>show-category/<?=$category['id']?>,<?=$category['name']?>"><?=$category['name']?></a></li>
+            <?php endforeach ?>
+            <!-- <li class="has-submenu">
+            <a href="<?=$baseUrl?>show-category/1">Electronics</a>
+            <ul class="submenu menu vertical" data-submenu>
+              <li><a href="<?=$baseUrl?>show-category/2,Monitors">Monitors</a></li>
+              <li><a href="#">Tablets</a></li>
+              <li>
+                <a href="#">Computers</a>
                 <ul class="submenu menu vertical" data-submenu>
-                    <li><a href="<?=$baseUrl?>/show-category/2,Monitors">Monitors</a></li>
-                    <li><a href="#">Tablets</a></li>
-                    <li>
-                        <a href="#">Computers</a>
+                  <li><a href="#">Desktops</a></li>
+                  <li><a href="#">Notebooks</a></li>
+                  <li>
+                    <a href="#">Laptops</a>
+                    <ul class="submenu menu vertical" data-submenu>
+                      <li><a href="#">Asus</a></li>
+                      <li><a href="#">Dell</a></li>
+                      <li>
+                        <a href="#">Acer</a>
                         <ul class="submenu menu vertical" data-submenu>
-                            <li><a href="#">Desktops</a></li>
-                            <li><a href="#">Notebooks</a></li>
-                            <li>
-                                <a href="#">Laptops</a>
-                                <ul class="submenu menu vertical" data-submenu>
-                                    <li><a href="#">Asus</a></li>
-                                    <li><a href="#">Dell</a></li>
-                                    <li>
-                                        <a href="#">Acer</a>
-                                        <ul class="submenu menu vertical" data-submenu>
-                                            <li><a href="<?=$baseUrl?>/show-category/2,FullHD">FullHD</a></li>
-                                            <li><a href="#">HD+</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                          <li><a href="<?=$baseUrl?>show-category/2,FullHD">FullHD</a></li>
+                          <li><a href="#">HD+</a></li>
                         </ul>
-                    </li>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
-            </li>
-            <li><a href="#">Videos</a></li>
-            <li>
-                <a href="#">Software</a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#">Videos</a></li>
+          <li>
+            <a href="#">Software</a>
+            <ul class="submenu menu vertical" data-submenu>
+              <li>
+                <a href="#">Operating systems</a>
                 <ul class="submenu menu vertical" data-submenu>
-                    <li>
-                        <a href="#">Operating systems</a>
-                        <ul class="submenu menu vertical" data-submenu>
-                            <li><a href="#">Linux</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Servers</a></li>
+                  <li><a href="#">Linux</a></li>
                 </ul>
-            </li>
+              </li>
+              <li><a href="#">Servers</a></li>
+            </ul>
+          </li> -->
         </ul>
     </div>
     <div class="top-bar-right">
